@@ -18,7 +18,7 @@ def save_checkpoint(
 ):
 
     
-        connection = psycopg2.connect(
+    connection = psycopg2.connect(
     host=os.getenv("DB_HOST"),
     database=os.getenv("DB_NAME"),
     user=os.getenv("DB_USER"),
@@ -108,10 +108,10 @@ def load_checkpoint(workflow_id):
             "current_node": result[2],
             "state": result[3],
             "status": result[4],
-            "active_model": result[5],
-            "loop_score": result[6],
-            "error_logs": result[7],
-            "updated_at": result[8]
+            "updated_at": result[5],
+            "active_model": result[6],
+            "loop_score": result[7],
+            "error_logs": result[8]  
         }
 
         print("Checkpoint Loaded Successfully!")
