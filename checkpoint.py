@@ -82,12 +82,12 @@ def save_checkpoint(
 def load_checkpoint(workflow_id):
 
     connection = psycopg2.connect(
-        host="localhost",
-        database="FAULT_TOLERANT_AGENT",
-        user="postgres",
-        password="REMOVED_SECRET",
-        port="5432"
-    )
+    host=os.getenv("DB_HOST"),
+    database=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    port=os.getenv("DB_PORT", "5432")
+)
 
     cursor = connection.cursor()
 
