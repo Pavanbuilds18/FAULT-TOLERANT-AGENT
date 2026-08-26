@@ -24,19 +24,45 @@ def data_fetcher(workflow_id):
 
     print("Data Fetcher Node Running...")
 
-    save_checkpoint(
-        workflow_id,
-        2,
-        "Data Fetcher",
-        {
-            "task": "Generate Report",
-            "progress": "50%"
-        },
-        "Running",
-        "GPT-4",
-        0.1,
-        ""
-    )
+    try:
+
+        save_checkpoint(
+            workflow_id,
+            2,
+            "Data Fetcher",
+            {
+                "task": "Generate Report",
+                "progress": "50%"
+            },
+            "Running",
+            "GPT-4",
+            0.1,
+            ""
+        )
+
+        # ----------------------------------------------------
+        # DO NOT PUT THE TEST CRASH HERE NOW
+        # ----------------------------------------------------
+
+    except Exception as error:
+
+        save_checkpoint(
+            workflow_id,
+            2,
+            "Data Fetcher",
+            {
+                "task": "Generate Report",
+                "progress": "50%"
+            },
+            "Failed",
+            "GPT-4",
+            0.1,
+            str(error)
+        )
+
+        print("Data Fetcher Failed:", error)
+
+        raise
 
 
 def synthesis(workflow_id):
